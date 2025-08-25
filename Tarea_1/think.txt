@@ -1,0 +1,14 @@
+#funcion quitarPunto(punto,ruta):: int int -> int
+#esta funcion retorna la ruta eliminando el punto dado 
+#ejemplo quitarPunto(10203040,3040) return 1020
+#ejemplo quitarPunto(3036,3036) return 0
+#def quitarPunto(punto, ruta):
+#    pass
+
+#assert quitarPunto(10203040,3040) == 1020
+#assert quitarPunto(3036,3036) == 0
+
+
+
+TENEMOS QUE COMPROBAR SI EL PRIMER :q
+PUNTO ES IGUAL AL mi
