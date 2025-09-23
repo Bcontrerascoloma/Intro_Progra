@@ -9,7 +9,7 @@ estructura.crear("lista", "valor siguiente")
 
 # Por claridad de conceptos, definimos una lista vacia, la cual para efectos
 # practicos, es equivalente a None. Con esto, la lectura del codigo
-# será mas intuitiva.
+# serï¿½ mas intuitiva.
 listaVacia = None
 
 #ojo: si reemplazamos todos los listaVacia por None, todo deberia funcionar

@@ -2,7 +2,7 @@ from lista import *
 #parasajero:: rut(str), nombre(str), categoria(str)
 
 estructura.crear("pasajero", "rut nombre categoria")
-p1 = pasajero("11.111.111-1", "Juan", "Gold")
+p1 = pasajero("11.111.111-1", "Juan", "Elite Plus")
 p2 = pasajero("22.222.222-2", "Ana", "Platinum")
 p3 = pasajero("33.333.333-3", "Luis", "Gold")
 p4 = pasajero("44.444.444-4", "Carla", "Flyer")
@@ -44,13 +44,13 @@ def concatenar(L1,L2):
         return L2
     else:
         return lista(cabeza(L1),concatenar(cola(L1),L2))
-print(concatenar(L,L))
+#print(concatenar(L,L))
 #ordenarPasajeros(L):: lista(pasajero) ->lista(pasajero)
 #devuelve una lista con los pasajeros ordenados según su prioridad
 def ordenarPasajeros(L):
     assert esLista(L)
     assert esPasajeroValido(cabeza(L)) or esListaVacia(cabeza(L))    
    # resultado = lista(listarCategoria(L,"Elite Plus"),lista(listarCategoria(L,"Diamond")),lista(listarCategoria(L,"Platinum")),lista(listarCategoria(L,"Gold")),lista(listarCategoria(L,"Flyer")),lista(listarCategoria(L,"No Fidelizado"),listaVacia))
-    resultado = crearLista()
-    return resultado
-      
+    resultado = concatenar(listarCategoria(L,"Elite Plus"),concatenar(listarCategoria(L,"Diamond"),concatenar(listarCategoria(L,"Platinum"),concatenar(listarCategoria(L,"Gold"),concatenar(listarCategoria(L,"Flyer"),concatenar(listarCategoria(L,"Flyer"),listaVacia))))))
+    return resultador
+print(ordenarPasajeros(L))
