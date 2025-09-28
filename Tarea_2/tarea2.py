@@ -45,7 +45,7 @@ def concatenar(L1,L2):
         return L2
     else:
         return lista(cabeza(L1),concatenar(cola(L1),L2))
-assert assert concatenar(L,L) == lista(valor=pasajero(rut='11.111.111-1', nombre='Juan', categoria='Elite Plus'), siguiente=lista(valor=pasajero(rut='22.222.222-2', nombre='Ana', categoria='Platinum'), siguiente=lista(valor=pasajero(rut='33.333.333-3', nombre='Luis', categoria='Gold'), siguiente=lista(valor=pasajero(rut='44.444.444-4', nombre='Carla', categoria='Flyer'), siguiente=lista(valor=pasajero(rut='11.111.111-1', nombre='Juan', categoria='Elite Plus'), siguiente=lista(valor=pasajero(rut='22.222.222-2', nombre='Ana', categoria='Platinum'), siguiente=lista(valor=pasajero(rut='33.333.333-3', nombre='Luis', categoria='Gold'), siguiente=lista(valor=pasajero(rut='44.444.444-4', nombre='Carla', categoria='Flyer'), siguiente=None)))))))) 
+assert concatenar(L,L) == lista(valor=pasajero(rut='11.111.111-1', nombre='Juan', categoria='Elite Plus'), siguiente=lista(valor=pasajero(rut='22.222.222-2', nombre='Ana', categoria='Platinum'), siguiente=lista(valor=pasajero(rut='33.333.333-3', nombre='Luis', categoria='Gold'), siguiente=lista(valor=pasajero(rut='44.444.444-4', nombre='Carla', categoria='Flyer'), siguiente=lista(valor=pasajero(rut='11.111.111-1', nombre='Juan', categoria='Elite Plus'), siguiente=lista(valor=pasajero(rut='22.222.222-2', nombre='Ana', categoria='Platinum'), siguiente=lista(valor=pasajero(rut='33.333.333-3', nombre='Luis', categoria='Gold'), siguiente=lista(valor=pasajero(rut='44.444.444-4', nombre='Carla', categoria='Flyer'), siguiente=listaVacia)))))))) 
 
 #ordenarPasajeros(L):: lista(pasajero) ->lista(pasajero)
 #devuelve una lista con los pasajeros ordenados según su prioridad
@@ -53,8 +53,45 @@ assert assert concatenar(L,L) == lista(valor=pasajero(rut='11.111.111-1', nombre
 def ordenarPasajeros(L):
     assert esLista(L)
     assert esPasajeroValido(cabeza(L)) or esListaVacia(cabeza(L))
-    resultado = concatenar(listarCategoria(L,"Elite Plus"),concatenar(listarCategoria(L,"Diamond"),concatenar(listarCategoria(L,"Platinum"),concatenar(listarCategoria(L,"Gold"),concatenar(listarCategoria(L,"Flyer"),concatenar(listarCategoria(L,"Flyer"),listaVacia))))))
+    resultado = concatenar(listarCategoria(L,"Elite Plus"),concatenar(listarCategoria(L,"Diamond"),concatenar(listarCategoria(L,"Platinum"),concatenar(listarCategoria(L,"Gold"),concatenar(listarCategoria(L,"Flyer"),concatenar(listarCategoria(L,"No Fidelizado"),listaVacia))))))
     return resultado
-assert ordenarPasajeros(L) == lista(valor=pasajero(rut='11.111.111-1', nombre='Juan', categoria='Elite Plus'), siguiente=lista(valor=pasajero(rut='22.222.222-2', nombre='Ana', categoria='Platinum'), siguiente=lista(valor=pasajero(rut='33.333.333-3', nombre='Luis', categoria='Gold'), siguiente=lista(valor=pasajero(rut='44.444.444-4', nombre='Carla', categoria='Flyer'), siguiente=lista(valor=pasajero(rut='44.444.444-4', nombre='Carla', categoria='Flyer'), siguiente=None))))) 
+assert ordenarPasajeros(L) == lista(valor=pasajero(rut='11.111.111-1', nombre='Juan', categoria='Elite Plus'), siguiente=lista(valor=pasajero(rut='22.222.222-2', nombre='Ana', categoria='Platinum'), siguiente=lista(valor=pasajero(rut='33.333.333-3', nombre='Luis', categoria='Gold'), siguiente=lista(valor=pasajero(rut='44.444.444-4', nombre='Carla', categoria='Flyer'), siguiente=None))))
+#leerteclado
+
+#calcular_categoria()
+def calcular_categoria(millas):
+    if millas < 25000:
+        categoria = "Flyer"
+    elif millas < 50000:
+        categoria = "Gold"
+    elif millas < 75000:
+        categoria = "Platinum"
+    elif millas < 100000:
+        categoria = "Diamond"
+    else:
+        categoria = "Elite Plus"
+    return categoria
+def leer_teclado(): 
+    nombre = (input("Ingrese nombre ('fin' para terminar): "))
+    if  nombre == "fin":
+        return listaVacia
+    rut = input(f"Rut de {nombre}: ")
+    fidelizado = input(f"¿{nombre} es usted fidelizado en airBeauchef?")
+    if fidelizado == "si" or fidelizado =="Si" or fidelizado=="SI":
+        millas = int(input(f"¿Cuantas millas ha volado {nombre} con nuestra aerolinea?"))
+        categoria = calcular_categoria(millas)
+    else:
+        categoria = "No Fidelizado"
+
+    p = pasajero(rut,nombre,categoria)
+    return lista(p,(leer_teclado()))
+
+def mostrarlista(L, r= 1):
+    if esListaVacia(L):
+        return
+    else:
+        p = cabeza(L)
+        print(f"({str(r)}) {p.nombre}")
+        mostrarlista(cola(L), r+1)
 
 
