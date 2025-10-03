@@ -30,3 +30,18 @@ def esAncestro(x,p):
     pormadre = (p.madre != None and p.madre == x) or esAncestro(x, p.madre)
     return porpadre or pormadre
 assert esAncestro(carlos , gustavo)
+
+#ancestros:: persona -> lista(persona)
+#lista con ancestros de la persona P
+#ej: ancestros(david) es lista(carlos,lista(beatriz,listaVacia))
+def ancestros(P):
+    if P==None:
+        return listaVacia
+    if P.padre == None:
+        L1 = listaVacia
+    else:
+        L1 = lista(P.padre,ancestros(P.padre))
+    if P.madre == None:
+        L2 = listaVacia
+    else:
+        L2 = lista(P.madre,ancestros(P.madre))
