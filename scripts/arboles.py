@@ -1,5 +1,6 @@
 #Problema 1 
 import estructura
+from lista import *
 #Persona:: nombre(str), nacimiento(int), padre(persona), madre(persona)
 
 estructura.crear("persona" ,"nombre nacimiento padre madre")
@@ -45,3 +46,14 @@ def ancestros(P):
         L2 = listaVacia
     else:
         L2 = lista(P.madre,ancestros(P.madre))
+    return concatenar(L1,L2)
+def concatenar(L1,L2):
+    assert esLista(L1) and esLista(L2)
+    if L2 == listaVacia:
+        return L1
+    elemento = cabeza(L2)
+    if not enLista(elemento,L1):
+        L1 = lista(elemento,L1)
+    return concatenar(L1,cola(L2))
+
+    
