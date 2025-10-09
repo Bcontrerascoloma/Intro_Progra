@@ -98,3 +98,28 @@ def largo(L):
 #Tests
 assert largo(lista(5,lista(4,listaVacia))) == 2
 assert largo(listaVacia) == 0
+
+#filtro: lista(any) (any -> bool) -> lista(any)
+#sublista de L con valores que cumplen el predicado
+def filtro(L,predicado):
+    assert esLista(L)
+    if L == listaVacia:
+        return listaVacia
+    if predicado(cabeza(L)):
+        return lista(cabeza(L),filtro(cola(L),predicado))
+    return filtro(cola(L),predicado)
+#mapa: lista(any) (any -> any) -> lista(any)
+#lista L aplicando la funcion f sobre sus valores
+def mapa(L,funcion):
+    assert esLista(L)
+    if L == listaVacia:
+        return listaVacia
+    y = funcion(cabeza(L))
+    return lista(y, mapa(cola(L),funcion))
+
+#reductor: lista (any any -> any) any -> any
+#reducir L a un solo valor aplicando el operador
+def reductor(L,operador,x):
+    if cola(L) == listaVacia:
+        return operador(x,cabeza(L)) #x: valor inicial
+    return reductor(cola(L),operador,operador(x,cabeza(L)))
