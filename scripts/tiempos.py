@@ -58,4 +58,4 @@ def mayorTiempo(T1,T2):
     else:
         return crearTiempo(T2)
 assert mayorTiempo(Ti1,Ti2) == Tiempo(2,30)
-        
+

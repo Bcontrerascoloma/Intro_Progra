@@ -26,5 +26,29 @@ def soloIso(L):
 assert soloIso(LT)==lista(T1, listaVacia)
 
 
-def soloIso(L):
+def soloIsoAbs(L):
+    assert esLista(L)
+    fun = lambda triangulo: True if tipo(triangulo)==2 else False
+    LFiltrada = filtro(fun,L)
+    return LFiltrada
+assert soloIsoAbs(LT) == lista(T1, listaVacia)
 
+
+#P1 B
+LTvalidos = lista(T1, lista(T2, lista(T3, lista(T4,
+listaVacia))))
+
+#mayorPer: lista(triangulo) -> lista(triangulo)
+#retorna el mayor perimetro
+#ej mayorPer(LT) return T3
+assert esLista(L)
+
+if cola(L) == listaVacia:
+    return None
+actual= cabeza(L)
+mayorResto = mayorPer(cola(L))
+if perimetro(actual) > perimetro(mayorResto):
+    return actual
+else:
+    return mayorResto
+assert mayorPer(LT) == T3

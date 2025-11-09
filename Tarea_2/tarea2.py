@@ -1,3 +1,4 @@
+import estructura
 from lista import *
 #parasajero:: rut(str), nombre(str), categoria(str)
 estructura.crear("pasajero", "rut nombre categoria")
@@ -97,10 +98,13 @@ def leer_teclado():
         categoria = calcular_categoria(millas)
     else:
         categoria = "No Fidelizado"
-    print("""**************************************************""")
+    print("""*********************************""")
     p = pasajero(rut,nombre,categoria)
     return lista(p,(leer_teclado()))
+    
+    
 #mostrarlista(L):: lista(pasajeros), (int) -> none
+#esta funcion recibe una lista de pasajeros y no retorna nada, sino que imprime los pasajeros con un cierto formato
 def mostrarlista(L, r= 1):
     if esListaVacia(L):
         return
