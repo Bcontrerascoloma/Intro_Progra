@@ -1,0 +1,65 @@
+import estructura
+
+# Definir la estructura 'animal' (no se asigna a variable!)
+estructura.mutable("animal", "identificador especie listaAvistamientos")
+
+
+# cargarAnimales: str × list -> list
+# Lee animales desde un archivo "ID,especie"
+# y retorna una nueva lista con los animales agregados.
+def cargarAnimales(nombreArchivo, lista_animales):
+    archivo = open(nombreArchivo, "r", encoding="utf-8")
+
+    for linea in archivo:
+        linea = linea.strip()
+        if linea != "":
+            partes = linea.split(",")
+            ident = partes[0]
+            especie = partes[1]
+            nuevo = animal(ident, especie, [])
+            lista_animales.append(nuevo)
+
+    archivo.close()
+    return lista_animales
+
+
+# agregarAvistamientos: str × list -> list
+# Lee avistamientos en formato:
+# PuestoX,ID,AAAA-MM-DD,HH:MM
+# y agrega el avistamiento al animal correspondiente.
+def agregarAvistamientos(nombreArchivo, lista_animales):
+    archivo = open(nombreArchivo, "r", encoding="utf-8")
+
+    for linea in archivo:
+        linea = linea.strip()
+        if linea != "":
+            partes = linea.split(",")
+            puesto = partes[0]
+            ident = partes[1]
+            fecha = partes[2]
+            hora = partes[3]
+            avist = puesto + " " + fecha + " " + hora
+
+            # Buscar animal y agregar avistamiento
+            for a in lista_animales:
+                if a.identificador == ident:
+                    a.listaAvistamientos.append(avist)
+                    break
+
+    archivo.close()
+    return lista_animales
+#zonaMasProbable(especieAnimal, hora, lista_animales)  -> str
+def zonaMasProbable(especieAnimal,hora):
+    puestos = []
+    for a in lista_animales:
+        if a.especie == especieAnimal:
+            for avistamientos in a.listaAvistamientos:
+                partes = avistamientos.split(",")
+                puesto = partes [0]
+                horaAV = partes[3]
+                horaAV = hora.strip().split(":")[0]
+                if int(horaAV) == hora:
+                    puestos.append(puesto)
+    print(puestos)
+
+zonaMasProbable("zorro",23)
